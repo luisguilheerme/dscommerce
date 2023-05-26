@@ -59,7 +59,6 @@ public class ProductService {
 
 	private void copyDtoToEntity(ProductDTO dto, Product entity) {
 		// TODO Auto-generated method stub
-		entity.setId(dto.getId());
 		entity.setName(dto.getName());
 		entity.setDescription(dto.getDescription());
 		entity.setPrice(dto.getPrice());
