@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.luisguilherme.dscommerce.dto.CategoryDTO;
 import com.luisguilherme.dscommerce.dto.ProductDTO;
 import com.luisguilherme.dscommerce.dto.ProductMinDTO;
+import com.luisguilherme.dscommerce.entities.Category;
 import com.luisguilherme.dscommerce.entities.Product;
 import com.luisguilherme.dscommerce.repositories.ProductRepository;
 import com.luisguilherme.dscommerce.services.exceptions.DatabaseException;
@@ -56,14 +58,6 @@ public class ProductService {
 			throw new ResourceNotFoundException("Recurso não encontrado");
 		}
 	}
-
-	private void copyDtoToEntity(ProductDTO dto, Product entity) {
-		// TODO Auto-generated method stub
-		entity.setName(dto.getName());
-		entity.setDescription(dto.getDescription());
-		entity.setPrice(dto.getPrice());
-		entity.setImgUrl(dto.getImgUrl());
-	}
 	
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
@@ -78,6 +72,22 @@ public class ProductService {
 		}
 		
 	}
+	
+	private void copyDtoToEntity(ProductDTO dto, Product entity) {
+		// TODO Auto-generated method stub
+		entity.setName(dto.getName());
+		entity.setDescription(dto.getDescription());
+		entity.setPrice(dto.getPrice());
+		entity.setImgUrl(dto.getImgUrl());
+		
+		entity.getCategories().clear();
+		for(CategoryDTO catDto : dto.getCategories()) {
+			Category cat = new Category();
+			cat.setId(catDto.getId());
+			entity.getCategories().add(cat);
+		}
+	}
+	
 }
 
 
