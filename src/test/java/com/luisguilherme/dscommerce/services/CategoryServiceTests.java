@@ -10,6 +10,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.luisguilherme.dscommerce.dto.CategoryDTO;
@@ -48,4 +50,5 @@ public class CategoryServiceTests {
 		Assertions.assertEquals(result.get(0).getId(), category.getId());
 		Assertions.assertEquals(result.get(0).getName(), category.getName());
 	}
+
 }
