@@ -8,13 +8,11 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import com.luisguilherme.dscommerce.dto.CustomError;
 import com.luisguilherme.dscommerce.dto.ValidationError;
 import com.luisguilherme.dscommerce.services.exceptions.DatabaseException;
 import com.luisguilherme.dscommerce.services.exceptions.ForbiddenException;
 import com.luisguilherme.dscommerce.services.exceptions.ResourceNotFoundException;
-
 import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
