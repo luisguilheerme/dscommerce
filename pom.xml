@@ -84,15 +84,14 @@
 				<version>0.8.7</version>
 				<configuration>
 					<excludes>
-						<exclude>
-							com/luisguilherme/dscommerce/DscommerceApplication.class</exclude>
+						<exclude>com/luisguilherme/dscommerce/DscommerceApplication.class</exclude>
 						<exclude>com/luisguilherme/dscommerce/config/**</exclude>
 						<exclude>com/luisguilherme/dscommerce/entities/**</exclude>
 						<exclude>com/luisguilherme/dscommerce/dto/**</exclude>
-						<exclude>
-							com/luisguilherme/dscommerce/controllers/handlers/**</exclude>
-						<exclude>
-							com/luisguilherme/dscommerce/services/exceptions/**</exclude>
+						<exclude>com/luisguilherme/dscommerce/util/**</exclude>
+						<exclude>com/luisguilherme/dscommerce/controllers/**</exclude>
+						<exclude>com/luisguilherme/dscommerce/controllers/handlers/**</exclude>
+						<exclude>com/luisguilherme/dscommerce/services/exceptions/**</exclude>
 					</excludes>
 				</configuration>
 				<executions>
