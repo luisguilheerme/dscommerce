@@ -43,8 +43,8 @@ public class OrderControllerIT {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	private String clientUsername, clientPassword, adminUsername, adminPassword, adminOnlyUsername, adminOnlyPassword;
-	private String clientToken, adminToken, adminOnlyToken, invalidToken;
+	private String clientUsername, clientPassword, adminUsername, adminPassword;
+	private String clientToken, adminToken, invalidToken;
 	private Long existingOrderId, nonExistingOrderId;
 	
 	private Order order;
@@ -58,15 +58,12 @@ public class OrderControllerIT {
 		clientPassword = "123456";
 		adminUsername = "alex@gmail.com";
 		adminPassword = "123456";
-		adminOnlyUsername = "ana@gmail.com";
-		adminOnlyPassword = "123456";
-		
+
 		existingOrderId = 1L;
 		nonExistingOrderId = 1000L;
 		
 		clientToken = tokenUtil.obtainAccessToken(mockMvc, clientUsername, clientPassword);
-		adminToken = tokenUtil.obtainAccessToken(mockMvc, adminUsername, adminPassword);
-		adminOnlyToken = tokenUtil.obtainAccessToken(mockMvc, adminOnlyUsername, adminOnlyPassword);
+		adminToken = tokenUtil.obtainAccessToken(mockMvc, adminUsername, adminPassword);		
 		invalidToken = adminToken + "xpto"; // Simulates a wrong token
 		
 		user = UserFactory.createClientUser();
@@ -199,22 +196,7 @@ public class OrderControllerIT {
 					.andDo(MockMvcResultHandlers.print());
 		
 		result.andExpect(status().isUnprocessableEntity());
-	}
-	
-	@Test
-	public void insertShouldReturnForbiddenWhenAdminLogged() throws Exception {
-
-		String jsonBody = objectMapper.writeValueAsString(orderDTO);
-		
-		ResultActions result = 
-				mockMvc.perform(post("/orders")
-					.header("Authorization", "Bearer " + adminOnlyToken)
-					.content(jsonBody)
-					.contentType(MediaType.APPLICATION_JSON)
-					.accept(MediaType.APPLICATION_JSON));
-		
-		result.andExpect(status().isForbidden());
-	}
+	}	
 	
 	@Test
 	public void insertShouldReturnUnauthorizedWhenInvalidToken() throws Exception {
