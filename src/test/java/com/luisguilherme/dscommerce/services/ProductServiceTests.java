@@ -63,6 +63,8 @@ public class ProductServiceTests {
 		
 		Mockito.when(repository.findAll((Pageable)any())).thenReturn(page);
 		
+		Mockito.when(repository.searchByName(any(), (Pageable)any())).thenReturn(page);
+		
 		Mockito.when(repository.save(any())).thenReturn(product);
 		
 		Mockito.when(repository.getReferenceById(existingId)).thenReturn(product);
