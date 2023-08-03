@@ -95,17 +95,17 @@ public class ProductServiceTests {
 	}
 	
 	@Test
-	public void findAllShouldReturnPageProductMinDTO() {
+	public void findAllShouldReturnPagedProductMinDTO() {
 		
 		Pageable pageable = PageRequest.of(0, 12);
-		Page<ProductMinDTO> result = service.findAll(pageable);
 		
+		Page<ProductMinDTO> result = service.findAll(productName, pageable);
 		
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals(result.getSize(), 1);
 		Assertions.assertEquals(result.iterator().next().getName(), productName);
 	}
-
+	
 	@Test
 	public void insertShouldReturnProductDTO() {
 		
